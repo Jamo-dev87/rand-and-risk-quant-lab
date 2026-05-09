@@ -116,7 +116,7 @@ LONDON_START = "08:00"
 LONDON_END = "13:00"
 
 # Free Yahoo/yfinance intraday data is usually limited to around 60 calendar days.
-INTRADAY_PERIOD = "60d"
+INTRADAY_PERIODS_TO_TRY = ["60d", "30d", "15d", "7d"]
 
 
 # ============================================================
@@ -125,25 +125,34 @@ INTRADAY_PERIOD = "60d"
 
 @st.cache_data
 def load_all_data():
-    data_15m = load_intraday_data(
-        ticker=TICKER,
-        period=INTRADAY_PERIOD,
-        interval="15m"
-    )
+    for period in INTRADAY_PERIODS_TO_TRY:
+        data_15m = load_intraday_data(
+            ticker=TICKER,
+            period=period,
+            interval="15m"
+        )
 
-    data_5m = load_intraday_data(
-        ticker=TICKER,
-        period=INTRADAY_PERIOD,
-        interval="5m"
-    )
+        data_5m = load_intraday_data(
+            ticker=TICKER,
+            period=period,
+            interval="5m"
+        )
 
-    return data_15m, data_5m
+        if not data_15m.empty and not data_5m.empty:
+            return data_15m, data_5m, period
+
+    return pd.DataFrame(), pd.DataFrame(), "No data"
 
 
-data_15m, data_5m = load_all_data()
+data_15m, data_5m, active_period = load_all_data()
 
 if data_15m.empty or data_5m.empty:
-    st.error("No intraday data was loaded. Please try again.")
+    st.error(
+        "No intraday data was loaded from yfinance. This usually means Yahoo Finance did not return YM=F intraday data on Streamlit Cloud."
+    )
+    st.info(
+        "Try refreshing the app. If it still fails, we may need to switch the deployed version to a saved CSV dataset or use a different proxy ticker."
+    )
     st.stop()
 
 
@@ -210,7 +219,7 @@ with set3:
     st.metric("Data Used", "15m + 5m")
 
 with set4:
-    st.metric("Data Window", INTRADAY_PERIOD)
+    st.metric("Data Window", active_period)
 
 
 st.markdown(
