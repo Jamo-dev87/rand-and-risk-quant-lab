@@ -1,0 +1,491 @@
+{
+  "generatedAt": "2026-08-17T15:12:22.888934+00:00",
+  "modelSettings": {
+    "market": "US30 Proxy - Dow Futures",
+    "londonRange": "08:00\u201313:00",
+    "dataUsed": "15m + 5m",
+    "dataWindow": "60d"
+  },
+  "snapshot": {
+    "totalModelDays": 49,
+    "entriesTriggered": 21,
+    "entryRate": 42.86,
+    "modelWinRate": 45.0,
+    "profitableTrades": 9,
+    "losingTrades": 10,
+    "flatTrades": 1,
+    "averageR": 0.27,
+    "totalR": 5.33,
+    "tradeSharpe": 0.72,
+    "maxRDrawdown": -2.57,
+    "noEntryOrNoSweep": 24
+  },
+  "sessionClose": {
+    "profit": 6,
+    "loss": 3,
+    "flat": 0,
+    "ambiguous": 0
+  },
+  "equityCurve": [
+    {
+      "tradeNumber": 1,
+      "cumulativeR": -1.0,
+      "runningPeakR": -1.0,
+      "drawdownR": 0.0
+    },
+    {
+      "tradeNumber": 2,
+      "cumulativeR": 1.37,
+      "runningPeakR": 1.37,
+      "drawdownR": 0.0
+    },
+    {
+      "tradeNumber": 3,
+      "cumulativeR": 0.37,
+      "runningPeakR": 1.37,
+      "drawdownR": -1.0
+    },
+    {
+      "tradeNumber": 4,
+      "cumulativeR": 0.5687,
+      "runningPeakR": 1.37,
+      "drawdownR": -0.8013
+    },
+    {
+      "tradeNumber": 5,
+      "cumulativeR": 1.0412,
+      "runningPeakR": 1.37,
+      "drawdownR": -0.3288
+    },
+    {
+      "tradeNumber": 6,
+      "cumulativeR": 1.0296,
+      "runningPeakR": 1.37,
+      "drawdownR": -0.3404
+    },
+    {
+      "tradeNumber": 7,
+      "cumulativeR": 1.0296,
+      "runningPeakR": 1.37,
+      "drawdownR": -0.3404
+    },
+    {
+      "tradeNumber": 8,
+      "cumulativeR": 1.3666,
+      "runningPeakR": 1.37,
+      "drawdownR": -0.0034
+    },
+    {
+      "tradeNumber": 9,
+      "cumulativeR": 0.3666,
+      "runningPeakR": 1.37,
+      "drawdownR": -1.0034
+    },
+    {
+      "tradeNumber": 10,
+      "cumulativeR": 0.7952,
+      "runningPeakR": 1.37,
+      "drawdownR": -0.5748
+    },
+    {
+      "tradeNumber": 11,
+      "cumulativeR": -0.2048,
+      "runningPeakR": 1.37,
+      "drawdownR": -1.5748
+    },
+    {
+      "tradeNumber": 12,
+      "cumulativeR": -1.2048,
+      "runningPeakR": 1.37,
+      "drawdownR": -2.5748
+    },
+    {
+      "tradeNumber": 13,
+      "cumulativeR": 0.0844,
+      "runningPeakR": 1.37,
+      "drawdownR": -1.2856
+    },
+    {
+      "tradeNumber": 14,
+      "cumulativeR": 0.2302,
+      "runningPeakR": 1.37,
+      "drawdownR": -1.1398
+    },
+    {
+      "tradeNumber": 15,
+      "cumulativeR": 1.3777,
+      "runningPeakR": 1.3777,
+      "drawdownR": 0.0
+    },
+    {
+      "tradeNumber": 16,
+      "cumulativeR": 1.1931,
+      "runningPeakR": 1.3777,
+      "drawdownR": -0.1845
+    },
+    {
+      "tradeNumber": 17,
+      "cumulativeR": 0.1931,
+      "runningPeakR": 1.3777,
+      "drawdownR": -1.1845
+    },
+    {
+      "tradeNumber": 18,
+      "cumulativeR": -0.8069,
+      "runningPeakR": 1.3777,
+      "drawdownR": -2.1845
+    },
+    {
+      "tradeNumber": 19,
+      "cumulativeR": -0.8162,
+      "runningPeakR": 1.3777,
+      "drawdownR": -2.1939
+    },
+    {
+      "tradeNumber": 20,
+      "cumulativeR": 5.3266,
+      "runningPeakR": 5.3266,
+      "drawdownR": 0.0
+    }
+  ],
+  "outcomeSummary": [
+    {
+      "outcome": "No Entry",
+      "count": 18
+    },
+    {
+      "outcome": "Loss",
+      "count": 7
+    },
+    {
+      "outcome": "Session Close Profit",
+      "count": 6
+    },
+    {
+      "outcome": "No Sweep",
+      "count": 6
+    },
+    {
+      "outcome": "No BOS",
+      "count": 4
+    },
+    {
+      "outcome": "Win",
+      "count": 3
+    },
+    {
+      "outcome": "Session Close Loss",
+      "count": 3
+    },
+    {
+      "outcome": "Invalid Reward",
+      "count": 1
+    },
+    {
+      "outcome": "Break-even",
+      "count": 1
+    }
+  ],
+  "recentTrades": [
+    {
+      "Date": "2026-08-17",
+      "Sweep Time": "",
+      "BOS Time": "",
+      "Entry Time": "",
+      "London High": 53807.0,
+      "London Low": 53672.0,
+      "Sweep High": null,
+      "Entry Level": null,
+      "Stop Level": null,
+      "Target Level": 53672.0,
+      "Outcome": "No Sweep",
+      "R Multiple": null,
+      "Plain English Result": "No London high liquidity event occurred after the London range closed."
+    },
+    {
+      "Date": "2026-08-14",
+      "Sweep Time": "14:30",
+      "BOS Time": "15:40",
+      "Entry Time": "",
+      "London High": 53905.0,
+      "London Low": 53791.0,
+      "Sweep High": 53956.0,
+      "Entry Level": null,
+      "Stop Level": 53956.0,
+      "Target Level": 53791.0,
+      "Outcome": "No Entry",
+      "R Multiple": null,
+      "Plain English Result": "Price did not retest the original liquidity zone after BOS."
+    },
+    {
+      "Date": "2026-08-13",
+      "Sweep Time": "13:30",
+      "BOS Time": "",
+      "Entry Time": "",
+      "London High": 54045.0,
+      "London Low": 53891.0,
+      "Sweep High": 54057.0,
+      "Entry Level": null,
+      "Stop Level": 54057.0,
+      "Target Level": 53891.0,
+      "Outcome": "No BOS",
+      "R Multiple": null,
+      "Plain English Result": "London high was swept, but no strict bearish BOS was detected. BOS requires a candle close below a 3-bearish-candle structure low."
+    },
+    {
+      "Date": "2026-08-12",
+      "Sweep Time": "13:15",
+      "BOS Time": "18:00",
+      "Entry Time": "",
+      "London High": 53995.0,
+      "London Low": 53861.0,
+      "Sweep High": 54150.0,
+      "Entry Level": null,
+      "Stop Level": 54150.0,
+      "Target Level": 53861.0,
+      "Outcome": "No Entry",
+      "R Multiple": null,
+      "Plain English Result": "Price did not retest the original liquidity zone after BOS."
+    },
+    {
+      "Date": "2026-08-11",
+      "Sweep Time": "13:15",
+      "BOS Time": "15:30",
+      "Entry Time": "",
+      "London High": 54139.0,
+      "London Low": 53970.0,
+      "Sweep High": 54336.0,
+      "Entry Level": null,
+      "Stop Level": 54336.0,
+      "Target Level": 53970.0,
+      "Outcome": "No Entry",
+      "R Multiple": null,
+      "Plain English Result": "Price did not retest the original liquidity zone after BOS."
+    },
+    {
+      "Date": "2026-08-10",
+      "Sweep Time": "",
+      "BOS Time": "",
+      "Entry Time": "",
+      "London High": 54170.0,
+      "London Low": 54050.0,
+      "Sweep High": null,
+      "Entry Level": null,
+      "Stop Level": null,
+      "Target Level": 54050.0,
+      "Outcome": "No Sweep",
+      "R Multiple": null,
+      "Plain English Result": "No London high liquidity event occurred after the London range closed."
+    },
+    {
+      "Date": "2026-08-07",
+      "Sweep Time": "13:30",
+      "BOS Time": "14:25",
+      "Entry Time": "15:25",
+      "London High": 54096.0,
+      "London Low": 53936.0,
+      "Sweep High": 54202.0,
+      "Entry Level": 54195.0,
+      "Stop Level": 54202.0,
+      "Target Level": 53936.0,
+      "Outcome": "Session Close Profit",
+      "R Multiple": 6.1429,
+      "Plain English Result": "Trade did not hit stop, target, or break-even resolution, so it was closed in profit at the final available session price."
+    },
+    {
+      "Date": "2026-08-06",
+      "Sweep Time": "",
+      "BOS Time": "",
+      "Entry Time": "",
+      "London High": 54678.0,
+      "London Low": 54544.0,
+      "Sweep High": null,
+      "Entry Level": null,
+      "Stop Level": null,
+      "Target Level": 54544.0,
+      "Outcome": "No Sweep",
+      "R Multiple": null,
+      "Plain English Result": "No London high liquidity event occurred after the London range closed."
+    },
+    {
+      "Date": "2026-08-05",
+      "Sweep Time": "13:15",
+      "BOS Time": "20:10",
+      "Entry Time": "21:10",
+      "London High": 54542.0,
+      "London Low": 54357.0,
+      "Sweep High": 54884.0,
+      "Entry Level": 54563.0,
+      "Stop Level": 54884.0,
+      "Target Level": 54357.0,
+      "Outcome": "Session Close Loss",
+      "R Multiple": -0.0093,
+      "Plain English Result": "Trade did not hit stop, target, or break-even resolution, so it was closed at a loss at the final available session price."
+    },
+    {
+      "Date": "2026-08-04",
+      "Sweep Time": "13:15",
+      "BOS Time": "20:50",
+      "Entry Time": "",
+      "London High": 53990.0,
+      "London Low": 53267.0,
+      "Sweep High": 54423.0,
+      "Entry Level": null,
+      "Stop Level": 54423.0,
+      "Target Level": 53267.0,
+      "Outcome": "No Entry",
+      "R Multiple": null,
+      "Plain English Result": "Price retested the liquidity zone but did not print 3 consecutive bullish candles before the data ended."
+    },
+    {
+      "Date": "2026-08-03",
+      "Sweep Time": "13:15",
+      "BOS Time": "",
+      "Entry Time": "",
+      "London High": 53204.0,
+      "London Low": 52847.0,
+      "Sweep High": 53215.0,
+      "Entry Level": null,
+      "Stop Level": 53215.0,
+      "Target Level": 52847.0,
+      "Outcome": "No BOS",
+      "R Multiple": null,
+      "Plain English Result": "London high was swept, but no strict bearish BOS was detected. BOS requires a candle close below a 3-bearish-candle structure low."
+    },
+    {
+      "Date": "2026-07-31",
+      "Sweep Time": "20:15",
+      "BOS Time": "",
+      "Entry Time": "",
+      "London High": 52742.0,
+      "London Low": 52571.0,
+      "Sweep High": 52747.0,
+      "Entry Level": null,
+      "Stop Level": 52747.0,
+      "Target Level": 52571.0,
+      "Outcome": "No BOS",
+      "R Multiple": null,
+      "Plain English Result": "London high was swept, but no strict bearish BOS was detected. BOS requires a candle close below a 3-bearish-candle structure low."
+    },
+    {
+      "Date": "2026-07-30",
+      "Sweep Time": "14:00",
+      "BOS Time": "16:00",
+      "Entry Time": "16:55",
+      "London High": 52048.0,
+      "London Low": 51755.0,
+      "Sweep High": 52133.0,
+      "Entry Level": 52081.0,
+      "Stop Level": 52133.0,
+      "Target Level": 51755.0,
+      "Outcome": "Loss",
+      "R Multiple": -1.0,
+      "Plain English Result": "Stop-loss was hit before target or break-even trigger."
+    },
+    {
+      "Date": "2026-07-29",
+      "Sweep Time": "",
+      "BOS Time": "",
+      "Entry Time": "",
+      "London High": 53023.0,
+      "London Low": 52695.0,
+      "Sweep High": null,
+      "Entry Level": null,
+      "Stop Level": null,
+      "Target Level": 52695.0,
+      "Outcome": "No Sweep",
+      "R Multiple": null,
+      "Plain English Result": "No London high liquidity event occurred after the London range closed."
+    },
+    {
+      "Date": "2026-07-28",
+      "Sweep Time": "13:15",
+      "BOS Time": "14:30",
+      "Entry Time": "15:50",
+      "London High": 52803.0,
+      "London Low": 52411.0,
+      "Sweep High": 52906.0,
+      "Entry Level": 52827.0,
+      "Stop Level": 52906.0,
+      "Target Level": 52411.0,
+      "Outcome": "Loss",
+      "R Multiple": -1.0,
+      "Plain English Result": "Stop-loss was hit before target or break-even trigger."
+    },
+    {
+      "Date": "2026-07-27",
+      "Sweep Time": "13:45",
+      "BOS Time": "15:40",
+      "Entry Time": "",
+      "London High": 52735.0,
+      "London Low": 52505.0,
+      "Sweep High": 52790.0,
+      "Entry Level": null,
+      "Stop Level": 52790.0,
+      "Target Level": 52505.0,
+      "Outcome": "No Entry",
+      "R Multiple": null,
+      "Plain English Result": "Price did not retest the original liquidity zone after BOS."
+    },
+    {
+      "Date": "2026-07-24",
+      "Sweep Time": "16:00",
+      "BOS Time": "18:05",
+      "Entry Time": "19:55",
+      "London High": 52196.0,
+      "London Low": 51943.0,
+      "Sweep High": 52314.0,
+      "Entry Level": 52081.0,
+      "Stop Level": 52314.0,
+      "Target Level": 51943.0,
+      "Outcome": "Session Close Loss",
+      "R Multiple": -0.1845,
+      "Plain English Result": "Trade did not hit stop, target, or break-even resolution, so it was closed at a loss at the final available session price."
+    },
+    {
+      "Date": "2026-07-23",
+      "Sweep Time": "",
+      "BOS Time": "",
+      "Entry Time": "",
+      "London High": 52332.0,
+      "London Low": 52065.0,
+      "Sweep High": null,
+      "Entry Level": null,
+      "Stop Level": null,
+      "Target Level": 52065.0,
+      "Outcome": "No Sweep",
+      "R Multiple": null,
+      "Plain English Result": "No London high liquidity event occurred after the London range closed."
+    },
+    {
+      "Date": "2026-07-22",
+      "Sweep Time": "14:30",
+      "BOS Time": "15:40",
+      "Entry Time": "16:20",
+      "London High": 52477.0,
+      "London Low": 52266.0,
+      "Sweep High": 52721.0,
+      "Entry Level": 52565.0,
+      "Stop Level": 52721.0,
+      "Target Level": 52266.0,
+      "Outcome": "Session Close Profit",
+      "R Multiple": 1.1474,
+      "Plain English Result": "Trade did not hit stop, target, or break-even resolution, so it was closed in profit at the final available session price."
+    },
+    {
+      "Date": "2026-07-21",
+      "Sweep Time": "15:00",
+      "BOS Time": "19:10",
+      "Entry Time": "19:25",
+      "London High": 52326.0,
+      "London Low": 52181.0,
+      "Sweep High": 52590.0,
+      "Entry Level": 52446.0,
+      "Stop Level": 52590.0,
+      "Target Level": 52181.0,
+      "Outcome": "Session Close Profit",
+      "R Multiple": 0.1458,
+      "Plain English Result": "Trade did not hit stop, target, or break-even resolution, so it was closed in profit at the final available session price."
+    }
+  ]
+}
