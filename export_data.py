@@ -1,10 +1,11 @@
 """
-Runs the US30 liquidity sweep backtest and writes the results to JSON.
+Runs the US30 liquidity sweep backtest (both the short and long models) and
+writes the combined results to JSON.
 
 This replaces the Streamlit app as the source of truth for the Rand & Risk
 website's Quant Lab section. Run this script whenever you want to refresh
 the numbers shown on the site, then copy the output file into the
-rand-and-risk repo (public/data/quant-lab.json) and redeploy.
+rand-and-risk repo (src/data/quantLabData.json) and redeploy.
 """
 
 import json
@@ -16,6 +17,7 @@ import pandas as pd
 from liquidity_sweep import (
     load_intraday_data,
     detect_short_trade_entries,
+    detect_long_trade_entries,
     summarise_short_trade_entries,
 )
 
@@ -52,37 +54,65 @@ def main():
         london_start=LONDON_START,
         london_end=LONDON_END,
     )
-    short_trade_summary = summarise_short_trade_entries(short_trade_table)
+    long_trade_table = detect_long_trade_entries(
+        data_15m=data_15m,
+        data_5m=data_5m,
+        london_start=LONDON_START,
+        london_end=LONDON_END,
+    )
 
-    if short_trade_table.empty:
-        print("No short entry model data was available.", file=sys.stderr)
+    if short_trade_table.empty and long_trade_table.empty:
+        print("No entry model data was available.", file=sys.stderr)
         sys.exit(1)
 
-    total_model_days = len(short_trade_table)
-    entry_triggered_count = int(short_trade_table["Entry Triggered"].sum())
+    trade_table = pd.concat([short_trade_table, long_trade_table], ignore_index=True)
+    trade_summary = summarise_short_trade_entries(trade_table)
 
-    profitable_trades = int(short_trade_table["Outcome"].isin(["Win", "Session Close Profit"]).sum())
-    losing_trades = int(short_trade_table["Outcome"].isin(["Loss", "Session Close Loss"]).sum())
-    flat_trades = int(short_trade_table["Outcome"].isin(["Break-even", "Session Close Flat"]).sum())
+    total_model_days = trade_table["Date"].nunique()
+    entry_triggered_count = int(trade_table["Entry Triggered"].sum())
 
-    session_close_profit = int((short_trade_table["Outcome"] == "Session Close Profit").sum())
-    session_close_loss = int((short_trade_table["Outcome"] == "Session Close Loss").sum())
-    session_close_flat = int((short_trade_table["Outcome"] == "Session Close Flat").sum())
+    profitable_trades = int(trade_table["Outcome"].isin(["Win", "Session Close Profit"]).sum())
+    losing_trades = int(trade_table["Outcome"].isin(["Loss", "Session Close Loss"]).sum())
+    flat_trades = int(trade_table["Outcome"].isin(["Break-even", "Session Close Flat"]).sum())
 
-    no_entry = int((short_trade_table["Outcome"] == "No Entry").sum())
-    no_sweep = int((short_trade_table["Outcome"] == "No Sweep").sum())
-    ambiguous = int((short_trade_table["Outcome"] == "Ambiguous").sum())
+    session_close_profit = int((trade_table["Outcome"] == "Session Close Profit").sum())
+    session_close_loss = int((trade_table["Outcome"] == "Session Close Loss").sum())
+    session_close_flat = int((trade_table["Outcome"] == "Session Close Flat").sum())
+
+    no_entry = int((trade_table["Outcome"] == "No Entry").sum())
+    no_sweep = int((trade_table["Outcome"] == "No Sweep").sum())
+    ambiguous = int((trade_table["Outcome"] == "Ambiguous").sum())
 
     resolved_trades = profitable_trades + losing_trades + flat_trades
     model_win_rate = (profitable_trades / resolved_trades * 100) if resolved_trades > 0 else 0
 
-    average_r = short_trade_table["R Multiple"].dropna().mean()
-    total_r = short_trade_table["R Multiple"].dropna().sum()
+    average_r = trade_table["R Multiple"].dropna().mean()
+    total_r = trade_table["R Multiple"].dropna().sum()
     entry_rate = (entry_triggered_count / total_model_days * 100) if total_model_days > 0 else 0
 
-    executed_trades = short_trade_table[
-        (short_trade_table["Entry Triggered"] == True)  # noqa: E712
-        & (short_trade_table["R Multiple"].notna())
+    # Also compute win rates split by direction, since a mixed model can hide
+    # one side quietly doing all the work (or all the damage).
+    def direction_stats(direction):
+        sub = trade_table[trade_table["Direction"] == direction]
+        entries = int(sub["Entry Triggered"].sum())
+        wins = int(sub["Outcome"].isin(["Win", "Session Close Profit"]).sum())
+        losses = int(sub["Outcome"].isin(["Loss", "Session Close Loss"]).sum())
+        flats = int(sub["Outcome"].isin(["Break-even", "Session Close Flat"]).sum())
+        resolved = wins + losses + flats
+        win_rate = (wins / resolved * 100) if resolved > 0 else 0
+        total_r_side = sub["R Multiple"].dropna().sum()
+        return {
+            "entriesTriggered": entries,
+            "wins": wins,
+            "losses": losses,
+            "flat": flats,
+            "winRate": round(win_rate, 2),
+            "totalR": round(float(total_r_side), 2),
+        }
+
+    executed_trades = trade_table[
+        (trade_table["Entry Triggered"] == True)  # noqa: E712
+        & (trade_table["R Multiple"].notna())
     ].copy()
 
     equity_curve = []
@@ -108,21 +138,22 @@ def main():
                 "cumulativeR": round(float(row["Cumulative R"]), 4),
                 "runningPeakR": round(float(row["Running Peak R"]), 4),
                 "drawdownR": round(float(row["Drawdown R"]), 4),
+                "direction": row["Direction"],
             }
             for _, row in executed_trades.iterrows()
         ]
 
     outcome_summary = [
         {"outcome": row["Outcome"], "count": int(row["Count"])}
-        for _, row in short_trade_summary.iterrows()
+        for _, row in trade_summary.iterrows()
     ]
 
     display_columns = [
-        "Date", "Sweep Time", "BOS Time", "Entry Time", "London High",
-        "London Low", "Sweep High", "Entry Level", "Stop Level",
+        "Date", "Direction", "Sweep Time", "BOS Time", "Entry Time", "London High",
+        "London Low", "Entry Level", "Stop Level",
         "Target Level", "Outcome", "R Multiple", "Plain English Result",
     ]
-    recent_trades_df = short_trade_table[display_columns].copy()
+    recent_trades_df = trade_table[display_columns].copy()
     recent_trades_df = recent_trades_df.sort_values(
         by=["Date", "Entry Time"], ascending=[False, False]
     ).head(20)
@@ -148,7 +179,7 @@ def main():
             "dataWindow": active_period,
         },
         "snapshot": {
-            "totalModelDays": total_model_days,
+            "totalModelDays": int(total_model_days),
             "entriesTriggered": entry_triggered_count,
             "entryRate": round(entry_rate, 2),
             "modelWinRate": round(model_win_rate, 2),
@@ -160,6 +191,10 @@ def main():
             "tradeSharpe": round(trade_sharpe, 2),
             "maxRDrawdown": round(max_r_drawdown, 2),
             "noEntryOrNoSweep": no_entry + no_sweep,
+        },
+        "byDirection": {
+            "short": direction_stats("Short"),
+            "long": direction_stats("Long"),
         },
         "sessionClose": {
             "profit": session_close_profit,
@@ -175,7 +210,11 @@ def main():
     with open(OUTPUT_PATH, "w") as f:
         json.dump(output, f, indent=2)
 
-    print(f"Wrote {OUTPUT_PATH} ({total_model_days} model days, {entry_triggered_count} entries).")
+    print(
+        f"Wrote {OUTPUT_PATH} ({total_model_days} model days, {entry_triggered_count} entries: "
+        f"{output['byDirection']['short']['entriesTriggered']} short, "
+        f"{output['byDirection']['long']['entriesTriggered']} long)."
+    )
 
 
 if __name__ == "__main__":
