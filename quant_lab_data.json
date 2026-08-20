@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-08-20T12:11:14.707719+00:00",
+  "generatedAt": "2026-08-20T12:19:43.556527+00:00",
   "modelV3": {
     "available": true,
     "modelSettings": {
-      "instruments": "US30 and USD/ZAR",
+      "instruments": "US30 and GBP/USD",
       "londonRange": "08:00\u201312:30",
       "tradingWindow": "12:30\u201321:00 (US session)",
       "htfLookbackDays": 14
@@ -14,445 +14,493 @@
         "totalR": 3.37,
         "winRate": 54.17
       },
-      "USDZAR": {
-        "trades": 21,
-        "totalR": -3.85,
-        "winRate": 42.86
+      "GBPUSD": {
+        "trades": 28,
+        "totalR": 3.25,
+        "winRate": 48.15
       }
     },
     "snapshot": {
       "totalDays": 60,
-      "entriesTriggered": 46,
-      "winRate": 48.89,
-      "wins": 22,
-      "losses": 23,
-      "totalR": -0.48
+      "entriesTriggered": 53,
+      "winRate": 50.98,
+      "wins": 26,
+      "losses": 25,
+      "totalR": 6.62
     },
     "byHtfAlignment": {
       "aligned": {
-        "trades": 13,
-        "totalR": -2.57,
-        "winRate": 38.46
+        "trades": 14,
+        "totalR": 1.46,
+        "winRate": 64.29
       },
       "counterTrend": {
-        "trades": 33,
-        "totalR": 2.09,
-        "winRate": 53.12
+        "trades": 39,
+        "totalR": 5.15,
+        "winRate": 45.95
       }
     },
     "equityCurve": [
       {
         "tradeNumber": 1,
-        "cumulativeR": 0.9237,
-        "runningPeakR": 0.9237,
+        "cumulativeR": -1.0,
+        "runningPeakR": -1.0,
         "drawdownR": 0.0,
         "direction": "Short",
-        "instrument": "USDZAR"
+        "instrument": "GBPUSD"
       },
       {
         "tradeNumber": 2,
-        "cumulativeR": 0.9851,
-        "runningPeakR": 0.9851,
+        "cumulativeR": -0.4902,
+        "runningPeakR": -0.4902,
         "drawdownR": 0.0,
-        "direction": "Short",
-        "instrument": "USDZAR"
+        "direction": "Long",
+        "instrument": "GBPUSD"
       },
       {
         "tradeNumber": 3,
-        "cumulativeR": 1.1137,
-        "runningPeakR": 1.1137,
+        "cumulativeR": 1.9363,
+        "runningPeakR": 1.9363,
         "drawdownR": 0.0,
         "direction": "Short",
-        "instrument": "USDZAR"
+        "instrument": "GBPUSD"
       },
       {
         "tradeNumber": 4,
-        "cumulativeR": 0.1137,
-        "runningPeakR": 1.1137,
+        "cumulativeR": 1.8441,
+        "runningPeakR": 1.9363,
+        "drawdownR": -0.0922,
+        "direction": "Short",
+        "instrument": "GBPUSD"
+      },
+      {
+        "tradeNumber": 5,
+        "cumulativeR": 2.646,
+        "runningPeakR": 2.646,
+        "drawdownR": 0.0,
+        "direction": "Short",
+        "instrument": "GBPUSD"
+      },
+      {
+        "tradeNumber": 6,
+        "cumulativeR": 1.646,
+        "runningPeakR": 2.646,
         "drawdownR": -1.0,
         "direction": "Long",
         "instrument": "US30"
       },
       {
-        "tradeNumber": 5,
-        "cumulativeR": -0.8863,
-        "runningPeakR": 1.1137,
+        "tradeNumber": 7,
+        "cumulativeR": 0.646,
+        "runningPeakR": 2.646,
         "drawdownR": -2.0,
+        "direction": "Long",
+        "instrument": "GBPUSD"
+      },
+      {
+        "tradeNumber": 8,
+        "cumulativeR": -0.354,
+        "runningPeakR": 2.646,
+        "drawdownR": -3.0,
         "direction": "Long",
         "instrument": "US30"
       },
       {
-        "tradeNumber": 6,
-        "cumulativeR": -1.8863,
-        "runningPeakR": 1.1137,
-        "drawdownR": -3.0,
+        "tradeNumber": 9,
+        "cumulativeR": -1.354,
+        "runningPeakR": 2.646,
+        "drawdownR": -4.0,
         "direction": "Short",
         "instrument": "US30"
       },
       {
-        "tradeNumber": 7,
-        "cumulativeR": -2.8863,
-        "runningPeakR": 1.1137,
-        "drawdownR": -4.0,
-        "direction": "Long",
-        "instrument": "USDZAR"
-      },
-      {
-        "tradeNumber": 8,
-        "cumulativeR": -0.7938,
-        "runningPeakR": 1.1137,
+        "tradeNumber": 10,
+        "cumulativeR": 0.7385,
+        "runningPeakR": 2.646,
         "drawdownR": -1.9075,
         "direction": "Short",
         "instrument": "US30"
       },
       {
-        "tradeNumber": 9,
-        "cumulativeR": -1.3042,
-        "runningPeakR": 1.1137,
-        "drawdownR": -2.4179,
-        "direction": "Long",
-        "instrument": "USDZAR"
-      },
-      {
-        "tradeNumber": 10,
-        "cumulativeR": -1.6049,
-        "runningPeakR": 1.1137,
-        "drawdownR": -2.7186,
-        "direction": "Long",
-        "instrument": "USDZAR"
-      },
-      {
         "tradeNumber": 11,
-        "cumulativeR": -1.3979,
-        "runningPeakR": 1.1137,
-        "drawdownR": -2.5116,
+        "cumulativeR": 1.009,
+        "runningPeakR": 2.646,
+        "drawdownR": -1.637,
         "direction": "Short",
-        "instrument": "US30"
+        "instrument": "GBPUSD"
       },
       {
         "tradeNumber": 12,
-        "cumulativeR": -1.4851,
-        "runningPeakR": 1.1137,
-        "drawdownR": -2.5988,
-        "direction": "Short",
-        "instrument": "US30"
+        "cumulativeR": 1.1949,
+        "runningPeakR": 2.646,
+        "drawdownR": -1.4511,
+        "direction": "Long",
+        "instrument": "GBPUSD"
       },
       {
         "tradeNumber": 13,
-        "cumulativeR": 0.0149,
-        "runningPeakR": 1.1137,
-        "drawdownR": -1.0988,
+        "cumulativeR": 1.5846,
+        "runningPeakR": 2.646,
+        "drawdownR": -1.0614,
+        "direction": "Short",
+        "instrument": "GBPUSD"
+      },
+      {
+        "tradeNumber": 14,
+        "cumulativeR": 1.7916,
+        "runningPeakR": 2.646,
+        "drawdownR": -0.8544,
         "direction": "Short",
         "instrument": "US30"
       },
       {
-        "tradeNumber": 14,
-        "cumulativeR": 0.2101,
-        "runningPeakR": 1.1137,
-        "drawdownR": -0.9036,
-        "direction": "Long",
-        "instrument": "USDZAR"
-      },
-      {
         "tradeNumber": 15,
-        "cumulativeR": 0.5913,
-        "runningPeakR": 1.1137,
-        "drawdownR": -0.5224,
+        "cumulativeR": 1.7044,
+        "runningPeakR": 2.646,
+        "drawdownR": -0.9416,
         "direction": "Short",
         "instrument": "US30"
       },
       {
         "tradeNumber": 16,
-        "cumulativeR": 1.2929,
-        "runningPeakR": 1.2929,
-        "drawdownR": 0.0,
-        "direction": "Long",
-        "instrument": "USDZAR"
+        "cumulativeR": 0.7044,
+        "runningPeakR": 2.646,
+        "drawdownR": -1.9416,
+        "direction": "Short",
+        "instrument": "GBPUSD"
       },
       {
         "tradeNumber": 17,
-        "cumulativeR": 0.2929,
-        "runningPeakR": 1.2929,
-        "drawdownR": -1.0,
+        "cumulativeR": 0.5616,
+        "runningPeakR": 2.646,
+        "drawdownR": -2.0844,
         "direction": "Short",
-        "instrument": "US30"
+        "instrument": "GBPUSD"
       },
       {
         "tradeNumber": 18,
-        "cumulativeR": -0.182,
-        "runningPeakR": 1.2929,
-        "drawdownR": -1.4749,
-        "direction": "Short",
-        "instrument": "USDZAR"
-      },
-      {
-        "tradeNumber": 19,
-        "cumulativeR": -1.182,
-        "runningPeakR": 1.2929,
-        "drawdownR": -2.4749,
+        "cumulativeR": 2.0616,
+        "runningPeakR": 2.646,
+        "drawdownR": -0.5844,
         "direction": "Short",
         "instrument": "US30"
       },
       {
-        "tradeNumber": 20,
-        "cumulativeR": -2.182,
-        "runningPeakR": 1.2929,
-        "drawdownR": -3.4749,
+        "tradeNumber": 19,
+        "cumulativeR": 1.0616,
+        "runningPeakR": 2.646,
+        "drawdownR": -1.5844,
         "direction": "Short",
-        "instrument": "USDZAR"
+        "instrument": "GBPUSD"
+      },
+      {
+        "tradeNumber": 20,
+        "cumulativeR": 1.4428,
+        "runningPeakR": 2.646,
+        "drawdownR": -1.2032,
+        "direction": "Short",
+        "instrument": "US30"
       },
       {
         "tradeNumber": 21,
-        "cumulativeR": -3.182,
-        "runningPeakR": 1.2929,
-        "drawdownR": -4.4749,
+        "cumulativeR": 0.4428,
+        "runningPeakR": 2.646,
+        "drawdownR": -2.2032,
         "direction": "Short",
         "instrument": "US30"
       },
       {
         "tradeNumber": 22,
-        "cumulativeR": -3.128,
-        "runningPeakR": 1.2929,
-        "drawdownR": -4.4209,
+        "cumulativeR": -0.5572,
+        "runningPeakR": 2.646,
+        "drawdownR": -3.2032,
         "direction": "Long",
-        "instrument": "USDZAR"
+        "instrument": "GBPUSD"
       },
       {
         "tradeNumber": 23,
-        "cumulativeR": -4.128,
-        "runningPeakR": 1.2929,
-        "drawdownR": -5.4209,
-        "direction": "Long",
-        "instrument": "USDZAR"
+        "cumulativeR": 1.1927,
+        "runningPeakR": 2.646,
+        "drawdownR": -1.4533,
+        "direction": "Short",
+        "instrument": "GBPUSD"
       },
       {
         "tradeNumber": 24,
-        "cumulativeR": -2.6721,
-        "runningPeakR": 1.2929,
-        "drawdownR": -3.965,
+        "cumulativeR": 0.1927,
+        "runningPeakR": 2.646,
+        "drawdownR": -2.4533,
         "direction": "Short",
         "instrument": "US30"
       },
       {
         "tradeNumber": 25,
-        "cumulativeR": -2.3532,
-        "runningPeakR": 1.2929,
-        "drawdownR": -3.6461,
-        "direction": "Short",
-        "instrument": "USDZAR"
+        "cumulativeR": -0.8073,
+        "runningPeakR": 2.646,
+        "drawdownR": -3.4533,
+        "direction": "Long",
+        "instrument": "GBPUSD"
       },
       {
         "tradeNumber": 26,
-        "cumulativeR": -2.2629,
-        "runningPeakR": 1.2929,
-        "drawdownR": -3.5558,
-        "direction": "Short",
-        "instrument": "US30"
+        "cumulativeR": -1.8073,
+        "runningPeakR": 2.646,
+        "drawdownR": -4.4533,
+        "direction": "Long",
+        "instrument": "GBPUSD"
       },
       {
         "tradeNumber": 27,
-        "cumulativeR": -1.4937,
-        "runningPeakR": 1.2929,
-        "drawdownR": -2.7866,
+        "cumulativeR": -2.8073,
+        "runningPeakR": 2.646,
+        "drawdownR": -5.4533,
         "direction": "Short",
         "instrument": "US30"
       },
       {
         "tradeNumber": 28,
-        "cumulativeR": -1.1576,
-        "runningPeakR": 1.2929,
-        "drawdownR": -2.4505,
-        "direction": "Long",
-        "instrument": "US30"
+        "cumulativeR": -0.8494,
+        "runningPeakR": 2.646,
+        "drawdownR": -3.4954,
+        "direction": "Short",
+        "instrument": "GBPUSD"
       },
       {
         "tradeNumber": 29,
-        "cumulativeR": -1.2735,
-        "runningPeakR": 1.2929,
-        "drawdownR": -2.5664,
+        "cumulativeR": 0.6065,
+        "runningPeakR": 2.646,
+        "drawdownR": -2.0395,
         "direction": "Short",
         "instrument": "US30"
       },
       {
         "tradeNumber": 30,
-        "cumulativeR": 0.2265,
-        "runningPeakR": 1.2929,
-        "drawdownR": -1.0664,
-        "direction": "Short",
-        "instrument": "USDZAR"
+        "cumulativeR": 0.3561,
+        "runningPeakR": 2.646,
+        "drawdownR": -2.2899,
+        "direction": "Long",
+        "instrument": "GBPUSD"
       },
       {
         "tradeNumber": 31,
-        "cumulativeR": -0.7735,
-        "runningPeakR": 1.2929,
-        "drawdownR": -2.0664,
+        "cumulativeR": 0.4464,
+        "runningPeakR": 2.646,
+        "drawdownR": -2.1996,
         "direction": "Short",
         "instrument": "US30"
       },
       {
         "tradeNumber": 32,
-        "cumulativeR": -0.5524,
-        "runningPeakR": 1.2929,
-        "drawdownR": -1.8453,
-        "direction": "Long",
-        "instrument": "USDZAR"
+        "cumulativeR": 1.2156,
+        "runningPeakR": 2.646,
+        "drawdownR": -1.4304,
+        "direction": "Short",
+        "instrument": "US30"
       },
       {
         "tradeNumber": 33,
-        "cumulativeR": -1.5524,
-        "runningPeakR": 1.2929,
-        "drawdownR": -2.8453,
+        "cumulativeR": 1.5517,
+        "runningPeakR": 2.646,
+        "drawdownR": -1.0943,
         "direction": "Long",
         "instrument": "US30"
       },
       {
         "tradeNumber": 34,
-        "cumulativeR": -1.6329,
-        "runningPeakR": 1.2929,
-        "drawdownR": -2.9258,
+        "cumulativeR": 1.9522,
+        "runningPeakR": 2.646,
+        "drawdownR": -0.6938,
         "direction": "Long",
-        "instrument": "USDZAR"
+        "instrument": "GBPUSD"
       },
       {
         "tradeNumber": 35,
-        "cumulativeR": -0.5609,
-        "runningPeakR": 1.2929,
-        "drawdownR": -1.8538,
-        "direction": "Long",
+        "cumulativeR": 1.8363,
+        "runningPeakR": 2.646,
+        "drawdownR": -0.8097,
+        "direction": "Short",
         "instrument": "US30"
       },
       {
         "tradeNumber": 36,
-        "cumulativeR": -1.5609,
-        "runningPeakR": 1.2929,
-        "drawdownR": -2.8538,
+        "cumulativeR": 0.8363,
+        "runningPeakR": 2.646,
+        "drawdownR": -1.8097,
         "direction": "Long",
-        "instrument": "USDZAR"
+        "instrument": "GBPUSD"
       },
       {
         "tradeNumber": 37,
-        "cumulativeR": 1.7605,
-        "runningPeakR": 1.7605,
-        "drawdownR": 0.0,
+        "cumulativeR": -0.1637,
+        "runningPeakR": 2.646,
+        "drawdownR": -2.8097,
         "direction": "Short",
         "instrument": "US30"
       },
       {
         "tradeNumber": 38,
-        "cumulativeR": 1.6189,
-        "runningPeakR": 1.7605,
-        "drawdownR": -0.1416,
+        "cumulativeR": 2.3621,
+        "runningPeakR": 2.646,
+        "drawdownR": -0.2839,
         "direction": "Long",
-        "instrument": "USDZAR"
+        "instrument": "GBPUSD"
       },
       {
         "tradeNumber": 39,
-        "cumulativeR": 0.6189,
-        "runningPeakR": 1.7605,
-        "drawdownR": -1.1416,
-        "direction": "Short",
-        "instrument": "USDZAR"
-      },
-      {
-        "tradeNumber": 40,
-        "cumulativeR": 1.1189,
-        "runningPeakR": 1.7605,
-        "drawdownR": -0.6416,
-        "direction": "Short",
+        "cumulativeR": 1.3621,
+        "runningPeakR": 2.646,
+        "drawdownR": -1.2839,
+        "direction": "Long",
         "instrument": "US30"
       },
       {
+        "tradeNumber": 40,
+        "cumulativeR": 0.3621,
+        "runningPeakR": 2.646,
+        "drawdownR": -2.2839,
+        "direction": "Short",
+        "instrument": "GBPUSD"
+      },
+      {
         "tradeNumber": 41,
-        "cumulativeR": 1.5654,
-        "runningPeakR": 1.7605,
-        "drawdownR": -0.1951,
+        "cumulativeR": 1.4341,
+        "runningPeakR": 2.646,
+        "drawdownR": -1.2119,
         "direction": "Long",
         "instrument": "US30"
       },
       {
         "tradeNumber": 42,
-        "cumulativeR": 0.5654,
-        "runningPeakR": 1.7605,
-        "drawdownR": -1.1951,
-        "direction": "Long",
-        "instrument": "US30"
+        "cumulativeR": 1.5054,
+        "runningPeakR": 2.646,
+        "drawdownR": -1.1406,
+        "direction": "Short",
+        "instrument": "GBPUSD"
       },
       {
         "tradeNumber": 43,
-        "cumulativeR": -0.4346,
-        "runningPeakR": 1.7605,
-        "drawdownR": -2.1951,
-        "direction": "Short",
-        "instrument": "USDZAR"
+        "cumulativeR": 0.5054,
+        "runningPeakR": 2.646,
+        "drawdownR": -2.1406,
+        "direction": "Long",
+        "instrument": "GBPUSD"
       },
       {
         "tradeNumber": 44,
-        "cumulativeR": -0.0311,
-        "runningPeakR": 1.7605,
-        "drawdownR": -1.7916,
+        "cumulativeR": 3.8268,
+        "runningPeakR": 3.8268,
+        "drawdownR": 0.0,
         "direction": "Short",
         "instrument": "US30"
       },
       {
         "tradeNumber": 45,
-        "cumulativeR": -0.4819,
-        "runningPeakR": 1.7605,
-        "drawdownR": -2.2424,
+        "cumulativeR": 6.2419,
+        "runningPeakR": 6.2419,
+        "drawdownR": 0.0,
+        "direction": "Short",
+        "instrument": "GBPUSD"
+      },
+      {
+        "tradeNumber": 46,
+        "cumulativeR": 6.7419,
+        "runningPeakR": 6.7419,
+        "drawdownR": 0.0,
+        "direction": "Short",
+        "instrument": "US30"
+      },
+      {
+        "tradeNumber": 47,
+        "cumulativeR": 7.1884,
+        "runningPeakR": 7.1884,
+        "drawdownR": 0.0,
         "direction": "Long",
-        "instrument": "USDZAR"
+        "instrument": "US30"
+      },
+      {
+        "tradeNumber": 48,
+        "cumulativeR": 6.1884,
+        "runningPeakR": 7.1884,
+        "drawdownR": -1.0,
+        "direction": "Long",
+        "instrument": "US30"
+      },
+      {
+        "tradeNumber": 49,
+        "cumulativeR": 6.517,
+        "runningPeakR": 7.1884,
+        "drawdownR": -0.6714,
+        "direction": "Short",
+        "instrument": "GBPUSD"
+      },
+      {
+        "tradeNumber": 50,
+        "cumulativeR": 6.9205,
+        "runningPeakR": 7.1884,
+        "drawdownR": -0.2679,
+        "direction": "Short",
+        "instrument": "US30"
+      },
+      {
+        "tradeNumber": 51,
+        "cumulativeR": 6.6178,
+        "runningPeakR": 7.1884,
+        "drawdownR": -0.5706,
+        "direction": "Short",
+        "instrument": "GBPUSD"
       }
     ],
     "outcomeSummary": [
       {
-        "outcome": "No Sweep",
-        "count": 76
-      },
-      {
         "outcome": "No Entry",
-        "count": 65
+        "count": 79
       },
       {
-        "outcome": "No CHoCH",
-        "count": 33
+        "outcome": "No Sweep",
+        "count": 71
+      },
+      {
+        "outcome": "Loss",
+        "count": 19
       },
       {
         "outcome": "Session Close Profit",
         "count": 18
       },
       {
-        "outcome": "Loss",
-        "count": 15
+        "outcome": "No CHoCH",
+        "count": 17
       },
       {
         "outcome": "Session Close Loss",
-        "count": 8
-      },
-      {
-        "outcome": "Win (TP1 only)",
-        "count": 2
-      },
-      {
-        "outcome": "Win (TP1+TP2)",
-        "count": 1
-      },
-      {
-        "outcome": "Unresolved",
-        "count": 1
+        "count": 6
       },
       {
         "outcome": "Win (TP1, runner open)",
+        "count": 5
+      },
+      {
+        "outcome": "Win (TP1+TP2)",
+        "count": 2
+      },
+      {
+        "outcome": "Unresolved",
+        "count": 2
+      },
+      {
+        "outcome": "Win (TP1 only)",
         "count": 1
       }
     ],
     "recentTrades": [
       {
         "Date": "2026-08-20",
-        "Instrument": "USDZAR",
+        "Instrument": "GBPUSD",
         "Direction": "Long",
-        "HTF Trend": "Range",
-        "Aligned With HTF": false,
-        "Order Block Found": false,
-        "Order Block Retested": false,
+        "HTF Trend": "Uptrend",
+        "Aligned With HTF": true,
+        "Order Block Found": true,
+        "Order Block Retested": true,
         "Sweep Time": "",
         "BOS Time": "",
         "Entry Time": "",
@@ -465,21 +513,21 @@
       },
       {
         "Date": "2026-08-20",
-        "Instrument": "USDZAR",
+        "Instrument": "GBPUSD",
         "Direction": "Short",
-        "HTF Trend": "Range",
+        "HTF Trend": "Uptrend",
         "Aligned With HTF": false,
-        "Order Block Found": false,
-        "Order Block Retested": false,
-        "Sweep Time": "12:45",
+        "Order Block Found": true,
+        "Order Block Retested": true,
+        "Sweep Time": "",
         "BOS Time": "",
         "Entry Time": "",
         "Entry Level": null,
         "Stop Level": null,
         "Target Level": null,
-        "Outcome": "No CHoCH",
+        "Outcome": "No Sweep",
         "R Multiple": null,
-        "Plain English Result": "Swept, but no confirmed CHoCH within the window."
+        "Plain English Result": "No liquidity sweep within the session window."
       },
       {
         "Date": "2026-08-20",
@@ -519,39 +567,39 @@
       },
       {
         "Date": "2026-08-19",
-        "Instrument": "USDZAR",
+        "Instrument": "GBPUSD",
         "Direction": "Long",
-        "HTF Trend": "Uptrend",
-        "Aligned With HTF": true,
-        "Order Block Found": true,
-        "Order Block Retested": true,
+        "HTF Trend": "Range",
+        "Aligned With HTF": false,
+        "Order Block Found": false,
+        "Order Block Retested": false,
+        "Sweep Time": "",
+        "BOS Time": "",
+        "Entry Time": "",
+        "Entry Level": null,
+        "Stop Level": null,
+        "Target Level": null,
+        "Outcome": "No Sweep",
+        "R Multiple": null,
+        "Plain English Result": "No liquidity sweep within the session window."
+      },
+      {
+        "Date": "2026-08-19",
+        "Instrument": "GBPUSD",
+        "Direction": "Short",
+        "HTF Trend": "Range",
+        "Aligned With HTF": false,
+        "Order Block Found": false,
+        "Order Block Retested": false,
         "Sweep Time": "13:30",
         "BOS Time": "18:35",
-        "Entry Time": "19:40",
-        "Entry Level": 16.1034,
-        "Stop Level": 16.066,
-        "Target Level": 16.2634,
+        "Entry Time": "19:05",
+        "Entry Level": 1.3601,
+        "Stop Level": 1.3629,
+        "Target Level": 1.3546,
         "Outcome": "Session Close Loss",
-        "R Multiple": -0.4508,
+        "R Multiple": -0.3027,
         "Plain English Result": "Neither stop nor TP1 hit; closed at final available price."
-      },
-      {
-        "Date": "2026-08-19",
-        "Instrument": "USDZAR",
-        "Direction": "Short",
-        "HTF Trend": "Uptrend",
-        "Aligned With HTF": false,
-        "Order Block Found": true,
-        "Order Block Retested": true,
-        "Sweep Time": "",
-        "BOS Time": "",
-        "Entry Time": "",
-        "Entry Level": null,
-        "Stop Level": null,
-        "Target Level": null,
-        "Outcome": "No Sweep",
-        "R Multiple": null,
-        "Plain English Result": "No liquidity sweep within the session window."
       },
       {
         "Date": "2026-08-19",
@@ -591,21 +639,21 @@
       },
       {
         "Date": "2026-08-18",
-        "Instrument": "USDZAR",
+        "Instrument": "GBPUSD",
         "Direction": "Short",
         "HTF Trend": "Range",
         "Aligned With HTF": false,
         "Order Block Found": false,
         "Order Block Retested": false,
-        "Sweep Time": "19:45",
-        "BOS Time": "",
-        "Entry Time": "",
-        "Entry Level": null,
-        "Stop Level": null,
-        "Target Level": null,
-        "Outcome": "No CHoCH",
-        "R Multiple": null,
-        "Plain English Result": "Swept, but no confirmed CHoCH within the window."
+        "Sweep Time": "14:00",
+        "BOS Time": "18:35",
+        "Entry Time": "19:15",
+        "Entry Level": 1.3536,
+        "Stop Level": 1.3551,
+        "Target Level": 1.3521,
+        "Outcome": "Session Close Profit",
+        "R Multiple": 0.3286,
+        "Plain English Result": "Neither stop nor TP1 hit; closed at final available price."
       },
       {
         "Date": "2026-08-18",
@@ -627,21 +675,21 @@
       },
       {
         "Date": "2026-08-18",
-        "Instrument": "USDZAR",
+        "Instrument": "GBPUSD",
         "Direction": "Long",
         "HTF Trend": "Range",
         "Aligned With HTF": false,
         "Order Block Found": false,
         "Order Block Retested": false,
-        "Sweep Time": "13:00",
-        "BOS Time": "15:50",
+        "Sweep Time": "",
+        "BOS Time": "",
         "Entry Time": "",
         "Entry Level": null,
-        "Stop Level": 16.1849,
+        "Stop Level": null,
         "Target Level": null,
-        "Outcome": "No Entry",
+        "Outcome": "No Sweep",
         "R Multiple": null,
-        "Plain English Result": "Price did not retest the original liquidity zone after BOS."
+        "Plain English Result": "No liquidity sweep within the session window."
       },
       {
         "Date": "2026-08-18",
@@ -681,30 +729,12 @@
       },
       {
         "Date": "2026-08-17",
-        "Instrument": "USDZAR",
+        "Instrument": "GBPUSD",
         "Direction": "Short",
-        "HTF Trend": "Uptrend",
+        "HTF Trend": "Range",
         "Aligned With HTF": false,
-        "Order Block Found": true,
-        "Order Block Retested": true,
-        "Sweep Time": "12:45",
-        "BOS Time": "15:10",
-        "Entry Time": "17:00",
-        "Entry Level": 16.1712,
-        "Stop Level": 16.2327,
-        "Target Level": 16.1259,
-        "Outcome": "Loss",
-        "R Multiple": -1.0,
-        "Plain English Result": "Stop-loss hit before TP1 (2R)."
-      },
-      {
-        "Date": "2026-08-17",
-        "Instrument": "USDZAR",
-        "Direction": "Long",
-        "HTF Trend": "Uptrend",
-        "Aligned With HTF": true,
-        "Order Block Found": true,
-        "Order Block Retested": true,
+        "Order Block Found": false,
+        "Order Block Retested": false,
         "Sweep Time": "",
         "BOS Time": "",
         "Entry Time": "",
@@ -714,6 +744,24 @@
         "Outcome": "No Sweep",
         "R Multiple": null,
         "Plain English Result": "No liquidity sweep within the session window."
+      },
+      {
+        "Date": "2026-08-17",
+        "Instrument": "GBPUSD",
+        "Direction": "Long",
+        "HTF Trend": "Range",
+        "Aligned With HTF": false,
+        "Order Block Found": false,
+        "Order Block Retested": false,
+        "Sweep Time": "18:30",
+        "BOS Time": "20:25",
+        "Entry Time": "",
+        "Entry Level": null,
+        "Stop Level": 1.3537,
+        "Target Level": null,
+        "Outcome": "No Entry",
+        "R Multiple": null,
+        "Plain English Result": "Price retested the liquidity zone but did not print 3 consecutive bearish candles before the data ended."
       },
       {
         "Date": "2026-08-17",
@@ -753,39 +801,39 @@
       },
       {
         "Date": "2026-08-14",
-        "Instrument": "USDZAR",
+        "Instrument": "GBPUSD",
         "Direction": "Short",
-        "HTF Trend": "Range",
+        "HTF Trend": "Downtrend",
+        "Aligned With HTF": true,
+        "Order Block Found": true,
+        "Order Block Retested": true,
+        "Sweep Time": "13:15",
+        "BOS Time": "14:00",
+        "Entry Time": "",
+        "Entry Level": null,
+        "Stop Level": 1.355,
+        "Target Level": null,
+        "Outcome": "No Entry",
+        "R Multiple": null,
+        "Plain English Result": "Setup invalidated because price broke above the original liquidity high before entry."
+      },
+      {
+        "Date": "2026-08-14",
+        "Instrument": "GBPUSD",
+        "Direction": "Long",
+        "HTF Trend": "Downtrend",
         "Aligned With HTF": false,
-        "Order Block Found": false,
-        "Order Block Retested": false,
-        "Sweep Time": "17:45",
+        "Order Block Found": true,
+        "Order Block Retested": true,
+        "Sweep Time": "",
         "BOS Time": "",
         "Entry Time": "",
         "Entry Level": null,
         "Stop Level": null,
         "Target Level": null,
-        "Outcome": "No CHoCH",
+        "Outcome": "No Sweep",
         "R Multiple": null,
-        "Plain English Result": "Swept, but no confirmed CHoCH within the window."
-      },
-      {
-        "Date": "2026-08-14",
-        "Instrument": "USDZAR",
-        "Direction": "Long",
-        "HTF Trend": "Range",
-        "Aligned With HTF": false,
-        "Order Block Found": false,
-        "Order Block Retested": false,
-        "Sweep Time": "13:30",
-        "BOS Time": "17:10",
-        "Entry Time": "",
-        "Entry Level": null,
-        "Stop Level": 16.1286,
-        "Target Level": null,
-        "Outcome": "No Entry",
-        "R Multiple": null,
-        "Plain English Result": "Price did not retest the original liquidity zone after BOS."
+        "Plain English Result": "No liquidity sweep within the session window."
       },
       {
         "Date": "2026-08-14",

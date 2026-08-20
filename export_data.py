@@ -48,7 +48,7 @@ def load_all_data():
 
 V3_INSTRUMENTS = {
     "US30": "YM=F",
-    "USDZAR": "ZAR=X",
+    "GBPUSD": "GBPUSD=X",
 }
 
 
@@ -160,7 +160,7 @@ def build_v3_section(us30_data_15m, us30_data_5m):
             ),
         }
 
-    display_names = {"US30": "US30", "USDZAR": "USD/ZAR", "US500": "US500"}
+    display_names = {"US30": "US30", "USDZAR": "USD/ZAR", "US500": "US500", "GBPUSD": "GBP/USD"}
     instruments_label = " and ".join(display_names.get(n, n) for n in V3_INSTRUMENTS)
 
     return {
