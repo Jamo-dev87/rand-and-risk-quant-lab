@@ -20,6 +20,7 @@ from liquidity_sweep import (
     detect_long_trade_entries,
     summarise_short_trade_entries,
 )
+from smc_model_v3 import detect_v3_trade_entries, resample_to_4h
 
 MARKET_LABEL = "US30 Proxy - Dow Futures"
 TICKER = "YM=F"
@@ -39,6 +40,112 @@ def load_all_data():
             return data_15m, data_5m, period
 
     return pd.DataFrame(), pd.DataFrame(), "No data"
+
+
+def build_v3_section(data_15m, data_5m):
+    """
+    Runs the SMC V3 model (HTF trend context, order block tagging, adjusted
+    session windows, TP1/TP2 partial-close exits) and builds a JSON-ready
+    summary, in the same spirit as the main short/long section above.
+    """
+    data_1h = load_intraday_data(ticker=TICKER, period="730d", interval="1h")
+    data_4h = resample_to_4h(data_1h) if not data_1h.empty else pd.DataFrame()
+
+    short_v3 = detect_v3_trade_entries(data_15m, data_5m, data_4h, "Short")
+    long_v3 = detect_v3_trade_entries(data_15m, data_5m, data_4h, "Long")
+    table = pd.concat([short_v3, long_v3], ignore_index=True)
+
+    if table.empty:
+        return {"available": False}
+
+    total_days = int(table["Date"].nunique())
+    entries = table[table["Entry Triggered"] == True].copy()  # noqa: E712
+    entry_count = len(entries)
+
+    win_outcomes = ["Win (TP1+TP2)", "Win (TP1 only)", "Win (TP1, runner open)", "Session Close Profit"]
+    loss_outcomes = ["Loss", "Session Close Loss"]
+
+    wins = int(entries["Outcome"].isin(win_outcomes).sum())
+    losses = int(entries["Outcome"].isin(loss_outcomes).sum())
+    resolved = wins + losses
+    win_rate = (wins / resolved * 100) if resolved > 0 else 0
+
+    r_values = entries["R Multiple"].dropna()
+    total_r = float(r_values.sum()) if not r_values.empty else 0
+
+    aligned = entries[entries["Aligned With HTF"] == True]  # noqa: E712
+    counter = entries[entries["Aligned With HTF"] == False]  # noqa: E712
+
+    def side_stats(sub):
+        r = sub["R Multiple"].dropna()
+        return {
+            "trades": int(len(sub)),
+            "totalR": round(float(r.sum()), 2) if not r.empty else 0,
+            "winRate": round(
+                (sub["Outcome"].isin(win_outcomes).sum() /
+                 max(sub["Outcome"].isin(win_outcomes + loss_outcomes).sum(), 1)) * 100, 2
+            ),
+        }
+
+    equity_curve = []
+    executed = entries[entries["R Multiple"].notna()].copy()
+    if not executed.empty:
+        executed["Date"] = pd.to_datetime(executed["Date"])
+        executed = executed.sort_values(["Date", "Entry Time"]).reset_index(drop=True)
+        cum = executed["R Multiple"].cumsum()
+        peak = cum.cummax()
+        for i in range(len(executed)):
+            equity_curve.append({
+                "tradeNumber": i + 1,
+                "cumulativeR": round(float(cum.iloc[i]), 4),
+                "runningPeakR": round(float(peak.iloc[i]), 4),
+                "drawdownR": round(float(cum.iloc[i] - peak.iloc[i]), 4),
+                "direction": executed.iloc[i]["Direction"],
+            })
+
+    outcome_counts = table["Outcome"].value_counts()
+    outcome_summary = [{"outcome": k, "count": int(v)} for k, v in outcome_counts.items()]
+
+    def clean(v):
+        if pd.isna(v):
+            return None
+        if isinstance(v, float):
+            return round(v, 4)
+        if isinstance(v, (bool,)):
+            return v
+        return str(v)
+
+    display_columns = [
+        "Date", "Direction", "HTF Trend", "Aligned With HTF", "Order Block Found",
+        "Order Block Retested", "Sweep Time", "BOS Time", "Entry Time", "Entry Level",
+        "Stop Level", "Target Level", "Outcome", "R Multiple", "Plain English Result",
+    ]
+    recent = table.sort_values(by=["Date"], ascending=False).head(20)
+    recent_rows = [{c: clean(row[c]) for c in display_columns} for _, row in recent.iterrows()]
+
+    return {
+        "available": True,
+        "modelSettings": {
+            "londonRange": "08:00–12:30",
+            "tradingWindow": "12:30–21:00 (US session)",
+            "htfLookbackDays": 14,
+        },
+        "snapshot": {
+            "totalDays": total_days,
+            "entriesTriggered": entry_count,
+            "winRate": round(win_rate, 2),
+            "wins": wins,
+            "losses": losses,
+            "totalR": round(total_r, 2),
+        },
+        "byHtfAlignment": {
+            "aligned": side_stats(aligned),
+            "counterTrend": side_stats(counter),
+        },
+        "equityCurve": equity_curve,
+        "outcomeSummary": outcome_summary,
+        "recentTrades": recent_rows,
+    }
 
 
 def main():
@@ -170,8 +277,11 @@ def main():
         for _, row in recent_trades_df.iterrows()
     ]
 
+    model_v3 = build_v3_section(data_15m, data_5m)
+
     output = {
         "generatedAt": datetime.now(timezone.utc).isoformat(),
+        "modelV3": model_v3,
         "modelSettings": {
             "market": MARKET_LABEL,
             "londonRange": f"{LONDON_START}–{LONDON_END}",
