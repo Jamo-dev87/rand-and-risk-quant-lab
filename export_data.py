@@ -48,7 +48,7 @@ def load_all_data():
 
 V3_INSTRUMENTS = {
     "US30": "YM=F",
-    "US500": "ES=F",
+    "USDZAR": "ZAR=X",
 }
 
 
@@ -160,10 +160,13 @@ def build_v3_section(us30_data_15m, us30_data_5m):
             ),
         }
 
+    display_names = {"US30": "US30", "USDZAR": "USD/ZAR", "US500": "US500"}
+    instruments_label = " and ".join(display_names.get(n, n) for n in V3_INSTRUMENTS)
+
     return {
         "available": True,
         "modelSettings": {
-            "instruments": "US30 and US500",
+            "instruments": instruments_label,
             "londonRange": "08:00–12:30",
             "tradingWindow": "12:30–21:00 (US session)",
             "htfLookbackDays": 14,
