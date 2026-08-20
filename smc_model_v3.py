@@ -342,9 +342,11 @@ def simulate_long_trade_v3(trade_data, entry_level, stop_level, target_level):
 # FULL V3 DETECTION: session window + HTF context + entry + v3 exit
 # ============================================================
 
-def detect_v3_trade_entries(data_15m, data_5m, data_4h, direction):
+def detect_v3_trade_entries(data_15m, data_5m, data_4h, direction, instrument="US30"):
     """
     direction: "Short" or "Long"
+    instrument: label only (e.g. "US30", "US500") - tagged onto each row so
+    results from multiple instruments can be pooled and still tell apart.
     """
     if data_15m.empty or data_5m.empty:
         return pd.DataFrame()
@@ -383,6 +385,7 @@ def detect_v3_trade_entries(data_15m, data_5m, data_4h, direction):
 
         base_row = {
             "Date": trading_date,
+            "Instrument": instrument,
             "Direction": direction,
             "HTF Trend": context["trend"],
             "Aligned With HTF": (

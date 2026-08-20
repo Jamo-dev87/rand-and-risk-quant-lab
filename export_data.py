@@ -31,10 +31,10 @@ INTRADAY_PERIODS_TO_TRY = ["60d", "30d", "15d", "7d"]
 OUTPUT_PATH = "quant_lab_data.json"
 
 
-def load_all_data():
+def load_all_data_for_ticker(ticker):
     for period in INTRADAY_PERIODS_TO_TRY:
-        data_15m = load_intraday_data(ticker=TICKER, period=period, interval="15m")
-        data_5m = load_intraday_data(ticker=TICKER, period=period, interval="5m")
+        data_15m = load_intraday_data(ticker=ticker, period=period, interval="15m")
+        data_5m = load_intraday_data(ticker=ticker, period=period, interval="5m")
 
         if not data_15m.empty and not data_5m.empty:
             return data_15m, data_5m, period
@@ -42,18 +42,42 @@ def load_all_data():
     return pd.DataFrame(), pd.DataFrame(), "No data"
 
 
-def build_v3_section(data_15m, data_5m):
+def load_all_data():
+    return load_all_data_for_ticker(TICKER)
+
+
+V3_INSTRUMENTS = {
+    "US30": "YM=F",
+    "US500": "ES=F",
+}
+
+
+def build_v3_section(us30_data_15m, us30_data_5m):
     """
     Runs the SMC V3 model (HTF trend context, order block tagging, adjusted
-    session windows, TP1/TP2 partial-close exits) and builds a JSON-ready
-    summary, in the same spirit as the main short/long section above.
+    session windows, TP1/TP2 partial-close exits) across BOTH US30 and
+    US500, and pools the results into one combined JSON-ready summary -
+    the two instruments are tagged per-row but reported together.
     """
-    data_1h = load_intraday_data(ticker=TICKER, period="730d", interval="1h")
-    data_4h = resample_to_4h(data_1h) if not data_1h.empty else pd.DataFrame()
+    tables = []
 
-    short_v3 = detect_v3_trade_entries(data_15m, data_5m, data_4h, "Short")
-    long_v3 = detect_v3_trade_entries(data_15m, data_5m, data_4h, "Long")
-    table = pd.concat([short_v3, long_v3], ignore_index=True)
+    for instrument, ticker in V3_INSTRUMENTS.items():
+        if ticker == TICKER:
+            data_15m, data_5m = us30_data_15m, us30_data_5m
+        else:
+            data_15m, data_5m, _ = load_all_data_for_ticker(ticker)
+
+        if data_15m.empty or data_5m.empty:
+            print(f"No intraday data for {instrument} ({ticker}) - skipping.", file=sys.stderr)
+            continue
+
+        data_1h = load_intraday_data(ticker=ticker, period="730d", interval="1h")
+        data_4h = resample_to_4h(data_1h) if not data_1h.empty else pd.DataFrame()
+
+        tables.append(detect_v3_trade_entries(data_15m, data_5m, data_4h, "Short", instrument))
+        tables.append(detect_v3_trade_entries(data_15m, data_5m, data_4h, "Long", instrument))
+
+    table = pd.concat([t for t in tables if not t.empty], ignore_index=True) if tables else pd.DataFrame()
 
     if table.empty:
         return {"available": False}
@@ -101,6 +125,7 @@ def build_v3_section(data_15m, data_5m):
                 "runningPeakR": round(float(peak.iloc[i]), 4),
                 "drawdownR": round(float(cum.iloc[i] - peak.iloc[i]), 4),
                 "direction": executed.iloc[i]["Direction"],
+                "instrument": executed.iloc[i]["Instrument"],
             })
 
     outcome_counts = table["Outcome"].value_counts()
@@ -116,19 +141,35 @@ def build_v3_section(data_15m, data_5m):
         return str(v)
 
     display_columns = [
-        "Date", "Direction", "HTF Trend", "Aligned With HTF", "Order Block Found",
+        "Date", "Instrument", "Direction", "HTF Trend", "Aligned With HTF", "Order Block Found",
         "Order Block Retested", "Sweep Time", "BOS Time", "Entry Time", "Entry Level",
         "Stop Level", "Target Level", "Outcome", "R Multiple", "Plain English Result",
     ]
     recent = table.sort_values(by=["Date"], ascending=False).head(20)
     recent_rows = [{c: clean(row[c]) for c in display_columns} for _, row in recent.iterrows()]
 
+    def instrument_stats(name):
+        sub = entries[entries["Instrument"] == name]
+        r = sub["R Multiple"].dropna()
+        return {
+            "trades": int(len(sub)),
+            "totalR": round(float(r.sum()), 2) if not r.empty else 0,
+            "winRate": round(
+                (sub["Outcome"].isin(win_outcomes).sum() /
+                 max(sub["Outcome"].isin(win_outcomes + loss_outcomes).sum(), 1)) * 100, 2
+            ),
+        }
+
     return {
         "available": True,
         "modelSettings": {
+            "instruments": "US30 and US500",
             "londonRange": "08:00–12:30",
             "tradingWindow": "12:30–21:00 (US session)",
             "htfLookbackDays": 14,
+        },
+        "byInstrument": {
+            name: instrument_stats(name) for name in V3_INSTRUMENTS
         },
         "snapshot": {
             "totalDays": total_days,
